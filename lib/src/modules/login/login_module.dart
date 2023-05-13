@@ -1,6 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../core/storage/session_storage.dart';
 import '../../repositories/auth/auth_repository.dart';
 import '../../repositories/auth/auth_repository_impl.dart';
 import '../../services/auth/login_service.dart';
@@ -26,7 +25,7 @@ class LoginModule extends Module {
   List<ModularRoute> get routes => [
         ChildRoute(
           '/',
-          child: (context, args) => LoginPage(),
+          child: (context, args) => const LoginPage(),
         )
       ];
 }
