@@ -17,7 +17,7 @@ class PaymentTypeRepositoryImpl implements PaymentTypeRepository {
   Future<List<PaymentTypeModel>> findAll(bool? enabled) async {
     try {
       final paymentResult = await _dio.auth().get(
-        '/paymento-type',
+        '/payment-types',
         queryParameters: {
           if (enabled != null) 'enabled': enabled,
         },
@@ -35,7 +35,7 @@ class PaymentTypeRepositoryImpl implements PaymentTypeRepository {
   Future<PaymentTypeModel> getById(int id) async {
     try {
       final paymentResult = await _dio.auth().get(
-        '/paymento-type/$id',
+        '/payment-types/$id',
         queryParameters: {
           'id': id,
         },
@@ -54,14 +54,14 @@ class PaymentTypeRepositoryImpl implements PaymentTypeRepository {
 
       if (model.id != null) {
         await client.put(
-          '/paymento-type/${model.id}',
+          '/payment-types/${model.id}',
           data: model.toMap(),
         );
       } else {
         await client.post(
-              '/paymento-type/',
-              data: model.toMap(),
-            );
+          '/payment-types/',
+          data: model.toMap(),
+        );
       }
     } on DioError catch (e, s) {
       log('Erro ao salvar forma de pagamento', error: e, stackTrace: s);

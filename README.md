@@ -6,9 +6,13 @@
 - Segurança com auth utilizando token para realizar a validação de acesso.
 
 # Aula 2
-- Criação de segunda aula
+- Segunda aula
 
 <img src="read_image/aula2.png"></img>
+
+- Terceira aula
+
+<img src="read_image/aula3.png"></img>
 
 ## Backend utilizado 
 - Servidor RESTful desenvolvido pela academia do flutter para simular requisições e respostas baseados em json.
