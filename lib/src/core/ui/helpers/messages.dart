@@ -16,7 +16,7 @@ mixin Messages<T extends StatefulWidget> on State<T> {
   void showWarning(String message) {
     _showSnackbar(
       AwesomeSnackbarContent(
-        title: 'Atenç]ao',
+        title: 'Atenção',
         message: message,
         contentType: ContentType.warning,
       ),
