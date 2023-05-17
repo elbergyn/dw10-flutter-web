@@ -7,6 +7,7 @@ import 'package:mobx/mobx.dart';
 import 'package:validatorless/validatorless.dart';
 
 import '../../../core/env/env.dart';
+import '../../../core/extensions/formatter_extensions.dart';
 import '../../../core/ui/helpers/loader.dart';
 import '../../../core/ui/helpers/messages.dart';
 import '../../../core/ui/helpers/size_extensions.dart';
@@ -33,7 +34,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
   final descriptionEC = TextEditingController();
 
   @override
-  dispose() {
+  void dispose() {
     nameEC.dispose();
     priceEC.dispose();
     descriptionEC.dispose();
@@ -52,6 +53,10 @@ class _ProductDetailPageState extends State<ProductDetailPage>
             showLoader();
             break;
           case ProductDetailStateStatus.loaded:
+            final model = controller.productModel!;
+            nameEC.text = model.name;
+            priceEC.text = model.price.currencyPTBR;
+            descriptionEC.text = model.description;
             hideLoader();
             break;
           case ProductDetailStateStatus.error:
@@ -59,6 +64,8 @@ class _ProductDetailPageState extends State<ProductDetailPage>
             showError(controller.errorMessage!);
             break;
           case ProductDetailStateStatus.errorLoadProduct:
+            showError(controller.errorMessage!);
+            Navigator.of(context).pop();
             break;
           case ProductDetailStateStatus.deleted:
             break;
@@ -71,6 +78,7 @@ class _ProductDetailPageState extends State<ProductDetailPage>
             break;
         }
       });
+      controller.loadProduct(widget.productId);
     });
   }
 
