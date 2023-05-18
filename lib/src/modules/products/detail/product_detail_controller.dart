@@ -55,7 +55,7 @@ abstract class ProductDetailControllerBase with Store {
         name: name,
         description: description,
         price: price,
-        enabled: true,
+        enabled: _productModel?.enabled ?? true,
         image: _imagePath!,
       );
       _status = ProductDetailStateStatus.saved;
@@ -83,6 +83,25 @@ abstract class ProductDetailControllerBase with Store {
       log('Erro ao carregar o produto', error: e, stackTrace: s);
       _status = ProductDetailStateStatus.errorLoadProduct;
       _errorMessage = 'Erro ao carregar o produto';
+    }
+  }
+
+  @action
+  Future<void> deleteProduct() async{
+    try {
+      _status = ProductDetailStateStatus.loading;
+      if(_productModel != null && _productModel!.id != null) {
+        await _productRepository.deleteProduct(_productModel!.id!);
+        _status = ProductDetailStateStatus.deleted;
+        return;
+      }
+      await Future.delayed(Duration.zero);
+      _status = ProductDetailStateStatus.error;
+      _errorMessage = 'produto não cadastrado, não é permitido deletar o produto';
+    } catch (e, s) {
+      log('Erro ao deletar produto', error: e, stackTrace: s);
+      _status = ProductDetailStateStatus.errorLoadProduct;
+      _errorMessage = 'Erro ao deletar produto';
     }
   }
 }
