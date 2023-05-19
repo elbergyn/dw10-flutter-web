@@ -29,3 +29,8 @@
 ## Dependencia
 - Como é utilizado o MobX, será necessário a utilização do build_runner para gerar código necessário. Podemos executar o comando a seguir deixando o mesmo executando e escutando as modificações para que seja gerado o código quando necessário. <code>dart run build_runner watch -d</code>
 
+# Package utilizados
+> flutter_web_plugins => para auxiliar gerenciamento de history back.
+
+<code>flutter_web_plugins:
+    sdk: flutter</code>

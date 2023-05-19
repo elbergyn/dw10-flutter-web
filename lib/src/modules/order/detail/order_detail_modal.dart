@@ -128,7 +128,7 @@ class _OrderDetailModalState extends State<OrderDetailModal> {
                 const SizedBox(
                   height: 10,
                 ),
-                const OrderButtonBar(),
+                OrderButtonBar(controller: widget.controller, order: widget.order),
               ],
             ),
           ),
